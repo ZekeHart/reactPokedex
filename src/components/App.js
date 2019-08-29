@@ -3,6 +3,7 @@ import './styles/App.css'
 import PokeList from './PokeList'
 import DetailView from './DetailView'
 import Pokemon from '../Pokemon'
+import axios from 'axios'
 
 class App extends Component {
   constructor () {
@@ -13,15 +14,12 @@ class App extends Component {
     this.handleOnClick = this.handleOnClick.bind(this)
   }
 
-  handleOnClick (id) {
-    fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
-      .then(res => res.json())
-      .then(data => {
-        const pokemon = new Pokemon(data)
+  async handleOnClick (id) {
+    const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}/`)
 
-        this.setState({ pokemon })
-      })
-      .catch(err => console.log(err))
+    const pokemon = new Pokemon(response.data)
+
+    this.setState({ pokemon })
   }
 
   render () {
