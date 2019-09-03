@@ -1,0 +1,8 @@
+h1 {
+    font-size: 5rem;
+    font-family: 'Londrina Solid', cursive;
+    text-align: center;
+    margin-top: 5%;
+    color: red;
+    text-shadow: 5px 5px 5px black;
+}
